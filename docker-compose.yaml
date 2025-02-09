@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: mysl.Dockerfile
+    container_name: mysl_container
+    image: mysl
+    networks:
+      - default
+    volumes:
+      - ${HOME}/bbgithub:/src/bbgithub
+      - ${HOME}/bin:/src/bin
+    command: tail -f /dev/null
+    environment:
+      - PATH=/src/bin:$HOME:/usr/bin/:/bin:sbin
+    hostname: mysl
+networks:
+  host:
+    name: host
+    external: true
